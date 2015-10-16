@@ -5,12 +5,11 @@ app.controller('DisciplinaController', function($scope, $http) {
 
 	$scope.listar = function() {
 		$http.get('http://localhost:8080/SAC/rest/disciplina').success(
-			function(dados) {
-				alert(dados);
-				if(Array.isArray(dados.disciplina)) {
-					$scope.listaDisciplinas = dados.disciplina;
+			function(dados) {				
+				if(Array.isArray(dados)) {
+					$scope.listaDisciplinas = dados;
 				} else {
-					$scope.listaDisciplinas.push(dados.disciplina);
+					$scope.listaDisciplinas.push(dados);
 				}
 			}
 		).error(function (data, status, headers, config) {        
@@ -18,13 +17,20 @@ app.controller('DisciplinaController', function($scope, $http) {
     	});
 	}
 
-	$scope.listar();	
+	$scope.listar();
+	
 
 	$scope.gravar = function() {
 				
-		$scope.listaDisciplinas.push($scope.disciplina);			
-
-		$scope.disciplina = {};	
+		$http.post('http://localhost:8080/SAC/rest/disciplina', $scope.disciplina).success(
+				function(dados) { 
+					alert(dados);
+					$scope.listar();
+					$scope.disciplina = {};			
+	  			}
+	   	).error(function (data, status, headers, config) {        
+        	alert('Erro: '+data+status+headers+config);
+    	});	
 	}
 
 	$scope.remover = function(disciplina) {

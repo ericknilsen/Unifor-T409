@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt">
+<head>
+	<meta charset="UTF-8">
+	<title>Cadastro Aluno</title>		
+</head>
+<body>
+	<div class="container"> 
+	
+	<div class="row">	
+
+	<div class="col-md-4"> 
+	
+	<form name="formTurmas">
+
+	<div class="form-group">
+	<label>Turma</label>
+	<select name="turma" ng-model="aluno.turma" class="form-control">  			
+		<option value="{{turma.valor}}" ng-repeat="turma in listaTurmas">
+	    {{turma.valor}}
+	    </option>
+	</select>
+	</div>
+
+	<div class="form-group">
+	<label>Matricula</label>
+	<input type="text" name="nome" class="form-control"  ng-model="aluno.matricula">	
+	</div>
+
+	<div class="form-group">
+	<label>Nome</label>
+	<input type="text" name="nome" class="form-control"  ng-model="aluno.nome">	
+	</div>
+
+	<button class="btn btn-primary" ng-click="gravar()">Gravar</button>
+	</form>
+
+	</div>	
+
+	
+
+	
+	<div class="col-md-1"></div>
+
+	<div class="col-md-4">
+	<legend><H5>Alunos cadastrados</H5></legend> 
+	 <table class="table table-condensed" ng-hide="listaAlunos.length == 0">
+		<thead>
+			<tr>				
+				<th>Turma</th>	
+				<th>Matrícula</th>	
+				<th>Nome</th>			
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="aluno in listaAlunos">			
+				<td>					
+					<input type="text" class="form-control input-sm" ng-model="aluno.turma" size="5" >
+				</td>	
+				<td>
+					<input type="text"  class="form-control input-sm" ng-model="aluno.matricula" size="30" >
+				</td>
+				<td>
+					<input type="text"  class="form-control input-sm" ng-model="aluno.nome" size="30" >
+				</td>
+				<td>		
+					<button ng-click="remover(aluno)"  class="btn btn-xs btn-danger">
+						<span class="glyphicon glyphicon-remove"></span>
+					</button>						
+				</td>
+			</tr>
+		</tbody>
+	</table> 	
+
+	</div>
+
+	</div>
+
+	</div>
+	
+</body>
+
+</html>

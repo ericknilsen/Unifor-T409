@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt">
+<head>
+	<meta charset="UTF-8">
+	<title>Cadastro Turma</title>		
+</head>
+<body>
+	<div class="container"> 
+	
+	<div class="row">	
+
+	<div class="col-md-4"> 
+	
+	<form name="formTurmas">
+
+	<div class="form-group">
+	<label>Semestre</label>
+	<select name="semestre" ng-model="turma.semestre" class="form-control">  			
+		<option value="{{semestre.valor}}" ng-repeat="semestre in listaSemestres">
+	    {{semestre.valor}}
+	    </option>
+	</select>
+	</div>
+
+	<div class="form-group">
+	<label>Disciplina</label>			
+  	<select name="disciplina" ng-model="turma.nomeDisciplina" class="form-control">  			
+	    <option value="{{disciplina.nome}}" ng-repeat="disciplina in listaDisciplinas">
+	    {{disciplina.codigo}} - {{disciplina.nome}}
+	    </option>
+	</select>
+	</div>	
+
+	<button class="btn btn-primary" ng-click="gravar()">Gravar</button>
+	</form>
+
+	</div>
+
+	<div class="col-md-1"></div>
+
+	<div class="col-md-4">
+	<legend><H5>Turmas cadastradas</H5></legend> 
+	 <table class="table table-condensed" ng-hide="listaTurmas.length == 0">
+		<thead>
+			<tr>				
+				<th>Semestre</th>	
+				<th>Disciplina</th>				
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="turma in listaTurmas">			
+				<td>					
+					<input type="text" class="form-control input-sm" ng-model="turma.semestre" size="5" >
+				</td>	
+				<td>
+					<input type="text"  class="form-control input-sm" ng-model="turma.nomeDisciplina" size="30" >
+				</td>
+				<td>		
+					<button ng-click="remover(turma)"  class="btn btn-xs btn-danger">
+						<span class="glyphicon glyphicon-remove"></span>
+					</button>						
+				</td>
+			</tr>
+		</tbody>
+	</table> 	
+
+	</div>
+
+	</div>
+
+	</div>
+	
+</body>
+
+</html>
